@@ -2,9 +2,8 @@ const Redis = require('redis')
 const RedisCommands = require('redis-commands');
 const { promisify } = require('util');
 
-const originCreateClient = Redis.createClient
-Redis.createClient = function() {
-  const client = originCreateClient.call(arguments)
+function createClient() {
+  const client = Redis.createClient.call(arguments)
   const p = {}
   RedisCommands.list.forEach(command => {
     var commandName = command.replace(/(?:^([0-9])|[^a-zA-Z0-9_$])/g, '_$1');
@@ -15,4 +14,4 @@ Redis.createClient = function() {
   })
   return client
 }
-module.exports = Redis
+module.exports = { ...Redis, createClient }
