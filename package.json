@@ -1,6 +1,6 @@
 {
   "name": "redis-promise-native",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "redis client for node in promise-style",
   "main": "index.js",
   "scripts": {

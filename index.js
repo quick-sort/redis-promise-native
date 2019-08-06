@@ -3,7 +3,7 @@ const RedisCommands = require('redis-commands');
 const { promisify } = require('util');
 
 function createClient() {
-  const client = Redis.createClient.call(arguments)
+  const client = Redis.createClient.apply(null, arguments)
   const p = {}
   RedisCommands.list.forEach(command => {
     var commandName = command.replace(/(?:^([0-9])|[^a-zA-Z0-9_$])/g, '_$1');
